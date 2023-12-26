@@ -1,15 +1,20 @@
-.Day{
+.day{
+    display: flex;
     font-size: 14px;
+    width: 170px;
+    justify-content: center;
+    flex-direction: row;
 }
 
 .month{
     display: flex;
-    width: 150px;
-    justify-content: space-between;
+    
+    width: 170px;
+    justify-content: center;
 }
 
 .wrapper{
-    width: 160px;
+    width: 180px;
     margin-top: 10px;
    
     display: flex;
@@ -18,7 +23,7 @@
 
 .year{
     display: flex;
-    width: 150px;
+    width: 170px;
     justify-content: space-around;
     flex-direction: row;
 }
