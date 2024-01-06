@@ -1,5 +1,5 @@
 {
-  "name": "date-picker",
+  "name": "light-dp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -51,6 +51,14 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "CLEMCLEM",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LILCLEMCLEM/projet-14-oc.git#master"
+  },
+  "bugs": {
+    "url": "https://github.com/LILCLEMCLEM/projet-14-oc/issues"
+  },
+  "homepage": "https://github.com/LILCLEMCLEM/projet-14-oc/tree/master#readme"
 }
