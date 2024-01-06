@@ -3,6 +3,10 @@ import ReactDOM from "react-dom/client";
 
 import DatePicker from "./lib/components/Datepicker";
 
+const Custom = (y, m, d) => {
+  return `${y} - ${m} - ${d}`;
+};
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

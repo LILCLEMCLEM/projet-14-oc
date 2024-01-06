@@ -16,6 +16,8 @@
 }
 
 .wrapper{
+    border-radius: 5px;
+    background-color:#A0DDFF ;
     width: 190px;
     margin-top: 10px;
    
@@ -31,3 +33,21 @@
     flex-direction: row;
 }
 
+.calWrapper{
+    
+    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.cal-col1 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.CalWidget {
+    position: absolute;
+}

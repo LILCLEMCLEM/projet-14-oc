@@ -14,5 +14,5 @@ const monthStr = [
 ];
 
 export function MonthInt2Str(month) {
-  return monthStr[month - 1];
+  return monthStr[month];
 }
