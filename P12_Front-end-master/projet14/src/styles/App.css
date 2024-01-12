@@ -50,3 +50,33 @@ fieldset{
     width: 120px;
     margin-bottom: 15px;
 }
+
+.Back{
+    width: 130px;
+    margin-top: px;
+    margin-left: 30px;
+    
+}
+
+.Search {
+    
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: 30px;
+}
+.Search >p {
+    font-size: 14px;
+}
+
+.GotoTable {
+    position: relative;
+    left:-10%;
+    top:20px;
+    height: 20px;
+}
+
+.Error{
+    font-size: 32px;
+    
+    margin-left: 20px;
+}
