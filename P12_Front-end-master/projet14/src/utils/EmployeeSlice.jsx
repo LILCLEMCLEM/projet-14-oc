@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-
 export const EmployeeSlice = createSlice({
   name: "employee",
   initialState: {
@@ -9,8 +8,11 @@ export const EmployeeSlice = createSlice({
   },
   reducers: {
     sendForms(state, action) {
-      state.EmployeeList.push(action.payload);
-      state.count = state.count + 1;
+      return {
+        ...state,
+        EmployeeList: [...state.EmployeeList, action.payload],
+        count: state.count + 1,
+      };
     },
   },
 });

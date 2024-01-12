@@ -1,12 +1,15 @@
 import { useState } from "react";
 import "../styles/App.css";
-import { State } from "../utils/data";
-import { selectEmployee } from "../utils/EmployeeSlice";
+import { Dep, State } from "../utils/data";
+import { selectCount, selectEmployee } from "../utils/EmployeeSlice";
 import Datepicker from "@lilclemclem/light-date-picker/dist/lib/components/Datepicker";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { sendForms } from "../utils/EmployeeSlice";
 import { Navigate } from "react-router";
-
+import { Box, IconButton, Modal } from "@mui/material";
+import ModalComp from "../Components/modals";
+import SelectMenu from "../Components/SelectMenu";
+import { StateOPT } from "../utils/data";
 function App() {
   const dispatch = useDispatch();
   const [firstname, setFN] = useState("");
@@ -19,12 +22,38 @@ function App() {
   const [zip, setZip] = useState("");
   const [department, setDP] = useState("");
   const [c, SetC] = useState(false);
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(useSelector(selectCount));
 
+  const [open, setOpen] = useState(false);
+  const CheckError = () => {
+    if (
+      firstname === "" ||
+      lastname === "" ||
+      birthday === "" ||
+      startDate === "" ||
+      street === "" ||
+      city === "" ||
+      state === "" ||
+      zip === "" ||
+      department === ""
+    ) {
+      return true;
+    }
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   const handle = (y, m, d) => {
     return `${y} - ${m} - ${d}`;
   };
   const handleSubmit = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    let error = CheckError();
+    if (error) {
+      alert("champ(s) vide(s)");
+      return;
+    }
     e.preventDefault();
     const ObjetEmployee = {
       id: counter,
@@ -42,10 +71,11 @@ function App() {
         },
       ],
     };
-    e.stopPropagation();
+
     console.log(ObjetEmployee);
     dispatch(sendForms(ObjetEmployee));
     setCounter(counter + 1);
+    setOpen(true);
   };
   if (c === true) {
     return <Navigate to={"/employee"} />;
@@ -100,17 +130,7 @@ function App() {
           />
 
           <label htmlFor="state-button">State</label>
-          <select
-            name="state"
-            id="state"
-            onChange={(e) => setState(e.target.value)}
-          >
-            {State.map((item, index) => (
-              <option key={index} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
+          <SelectMenu List={StateOPT} handleChange={setState} />
 
           <label htmlFor="zip-code">Zip Code</label>
           <input
@@ -121,30 +141,15 @@ function App() {
         </fieldset>
 
         <label htmlFor="department-button">Department</label>
-        <select
-          name="department"
-          id="department"
-          onChange={(e) => setDP(e.target.value)}
-        >
-          <option>Sales</option>
-          <option>Marketing</option>
-          <option>Engineering</option>
-          <option>Human Resources</option>
-          <option>Legal</option>
-        </select>
-        <span
-          tabIndex="0"
-          id="department-button"
-          aria-expanded="false"
-          aria-autocomplete="list"
-          aria-owns="department-menu"
-          aria-haspopup="true"
-        >
-          <button className="Submit" type="submit">
-            Save
-          </button>
-        </span>
+        <SelectMenu List={Dep} handleChange={setDP} />
+
+        <button className="Submit" type="submit">
+          Save
+        </button>
       </form>
+      {open === true ? (
+        <ModalComp open={open} handleClose={handleClose} />
+      ) : null}
     </div>
   );
 }
